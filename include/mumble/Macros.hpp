@@ -10,6 +10,12 @@
 #	define MUMBLE_COMPILER_MSVC
 #endif
 
+#ifdef MUMBLE_USE_CONSTEXPR
+	#define MUMBLE_CONSTEXPR constexpr
+#else
+	#define MUMBLE_CONSTEXPR
+#endif
+
 #define MUMBLE_ENUM_OPERATORS(T)                                                                     \
 	static inline T operator~(const T lhs) {                                                         \
 		return static_cast< T >(~static_cast< std::underlying_type< T >::type >(lhs));               \

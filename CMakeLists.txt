@@ -47,6 +47,11 @@ if(MSVC)
 endif()
 
 set(QUICKPOOL_TEST OFF)
+message(STATUS " Setting Boost Path")
+# set(Boost_INCLUDE_DIR "${_VCPKG_INSTALLED_DIR}")
+
+
+
 
 add_subdirectory("${3RDPARTY_DIR}/quickpool")
 add_subdirectory("${3RDPARTY_DIR}/toml11")

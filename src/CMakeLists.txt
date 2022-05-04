@@ -7,10 +7,10 @@ include(MumbleCompiler)
 
 find_package(Boost REQUIRED
 	COMPONENTS
-		thread
+	thread
 )
 find_package(OpenSSL REQUIRED)
-find_package(Opus)
+find_package(Opus CONFIG REQUIRED)
 find_package(Protobuf REQUIRED)
 
 if(NOT Opus_FOUND)
@@ -122,7 +122,7 @@ target_sources(mumble
 
 target_link_libraries(mumble
 	PRIVATE
-		Boost::thread
+		${BOOST_LIB}
 		OpenSSL::Crypto
 		OpenSSL::SSL
 		protobuf::libprotobuf

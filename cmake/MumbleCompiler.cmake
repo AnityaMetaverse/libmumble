@@ -12,6 +12,6 @@ function(target_pedantic_warnings TARGET)
 
 	target_compile_options(${TARGET}
 		PRIVATE
-			$<IF:$<BOOL:${COMPILER_MSVC}>,/W4 /WX,-Wall -Wextra -Wpedantic -Werror>
+			$<IF:$<BOOL:${COMPILER_MSVC}>,/W4 /WX-,-Wall -Wextra -Wpedantic -Werror>
 	)
 endfunction()

@@ -22,7 +22,7 @@ endif()
 
 add_library(mumble SHARED)
 
-target_pedantic_warnings(mumble)
+# target_pedantic_warnings(mumble)
 
 protobuf_generate_cpp(PROTO_TCP_CPP PROTO_TCP_HPP "MumbleTCP.proto")
 protobuf_generate_cpp(PROTO_UDP_CPP PROTO_UDP_HPP "MumbleUDP.proto")
@@ -36,6 +36,9 @@ set_target_properties(mumble
 
 if(WIN32)
 	set(HAVE_EPOLL TRUE)
+	target_compile_definitions(mumble PRIVATE COMPILER_MSVC)
+	target_link_libraries(mumble PRIVATE wsock32 ws2_32)
+	# set_target_properties(mumble PRIVATE "/WX-")
 else()
 	include(CheckSymbolExists)
 
@@ -122,7 +125,7 @@ target_sources(mumble
 
 target_link_libraries(mumble
 	PRIVATE
-		${BOOST_LIB}
+		Boost::thread
 		OpenSSL::Crypto
 		OpenSSL::SSL
 		protobuf::libprotobuf
